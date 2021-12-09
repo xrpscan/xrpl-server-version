@@ -1,0 +1,32 @@
+# xrpl-server-version
+
+This library can be used to decode `server_version` property present in XRP Ledger validation messages. 
+
+## Validation message format
+```
+validationMessage = {
+  cookie: '13008741850857803060',
+  data: '228000000126041128F12929453F343AB48855CA43230D3451AD5E58B1ABC9AAEFF1850522540F780796FB65969F021ACF296E2DE6B09167245017000000000000000000000000000000000000000000000000000000000000000073210230EC376FC7AA70726B1F63F40F875A9461018C7DC14D5C37EE1761005C7AD4D77646304402204CC2C6F9D5223511DAED7FFF426CA02AD2ACBDDA0604AB42AA2FC497BF4087F102202A2E9EDF801120BDB7ACC441B792C18E6145F431240963248C4C4DB4A780A84E',
+  flags: 2147483649,
+  full: true,
+  ledger_hash: 'AD5E58B1ABC9AAEFF1850522540F780796FB65969F021ACF296E2DE6B0916724',
+  ledger_index: '68233457',
+  master_key: 'nHUpDPFoCNysckDSHiUBEdDXRu2iYLUgYjTzrj3bde5iDRkNtY8f',
+  server_version: '1745990414436925440',
+  signature: '304402204CC2C6F9D5223511DAED7FFF426CA02AD2ACBDDA0604AB42AA2FC497BF4087F102202A2E9EDF801120BDB7ACC441B792C18E6145F431240963248C4C4DB4A780A84E',
+  signing_time: 692404020,
+  type: 'validationReceived',
+  validation_public_key: 'n9JvsY3yhCdsHe3JsVTwvCtvKnchg2eridHLWdBdWf8VkpZSqqS9'
+}
+```
+
+## Usage
+
+```
+import { decodeSoftwareVersion } from 'xrpl-server-version';
+version = decodeSoftwareVersion(Number(validationMessage.server_version));
+```
+
+## Spec
+
+Original spec is available [here](https://github.com/ripple/rippled/blob/develop/src/ripple/protocol/BuildInfo.h#L46).
